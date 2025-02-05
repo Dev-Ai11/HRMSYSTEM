@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<br/>
+<h1> Human Resources Management </H1>
+    {% else %}
+
+<br/><br/>
+<form method="POST": action="{% url "home" %}">
+    {% csrf_token %}
+
+<form>
+  <div class="mb-5"  card>
+    
+    <input type="text" class="form-control"  placeholder="username" name="username">
+    
+  </div>
+
+  <div class="mb-3" card>
+    
+    <input type="password" class="form-control"  placeholder="password" name="password">
+    
+  </div>
+ 
+  <button type="submit" class="btn btn-secondary">login</button>
+</form>
+</form>
+
+{% endif %}
+
+{% endblock  %}
