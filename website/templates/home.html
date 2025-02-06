@@ -4,14 +4,15 @@
 {% if user.is_authenticated %}
 <br/>
 
-<h> Employee Management System </H1>
+
   <h2> "Employees' Details" </H2>
    
     <table class="table">
   <thead>
     <tr>
       
-      <th scope="col">Name</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
       <th scope="col">email</th>
       <th scope="col">Phone</th>
       <th scope="col">Address</th>
@@ -20,17 +21,15 @@
       <th scope="col">Created_at</th>
 			<th scope="col">id</th>
 			
-
     </tr>
   </thead>
   <tbody>
      {% if records %}
     {% for record in records %}
 
-    
     <tr>
-      
       <td>{{ record.first_name }}</td>
+      <td>{{ record.last_name }}</td>
       <td>{{ record.email }}</td>
       <td>{{ record.phone }}</td>
       <td>{{ record.address}}</td>
@@ -39,19 +38,11 @@
     	<td>{{ record.zipcode }}</td>
     	<td>{{ record.created_at }}</td>
     	<td>{{ record.id }}</td>
-
-
-
     </tr>
 
       {% endfor %} 
 
     {% endif %}
-
-
-
-
-
 
     </tbody>
 </table>
@@ -63,6 +54,10 @@
     {% else %}
 
 <br/><br/>
+
+
+<div class="col-md-4 offset-md-4">
+
 <form method="POST": action="{% url "home" %}">
     {% csrf_token %}
 
@@ -79,7 +74,9 @@
     
   </div>
  
+ 
   <button type="submit" class="btn btn-secondary">login</button>
+  </div>
 </form>
 </form>
 

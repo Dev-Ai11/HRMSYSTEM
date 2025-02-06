@@ -44,7 +44,10 @@ def register_user(request):
                 messages.success(request, "you have been successfully Registered")
                 return redirect('home')
         else:
-            messages.error(request, "registration has been failed try again latter")    
+            messages.error(
+                request,
+                "Please read the Instruction Carefully before filling the Registration Form",
+            )
             return redirect('register')
     else:
         form = SignUpForm()
