@@ -5,9 +5,8 @@ from website.form import SignUpForm
 from .models import Record
 
 
-
 def home(request):
-    records = Record.objects.all
+    records = Record.objects.all()
     if request.method=="POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -35,14 +34,18 @@ def register_user(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            # authenticate and login page 
+            # authenticate and login page
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
-            login(request, user)
-            messages.success(request, "you have been successfully Registered")
-            return redirect('home')
+
+            if user is not None:
+                login(request, user)
+                messages.success(request, "you have been successfully Registered")
+                return redirect('home')
+        else:
+            messages.error(request, "registration has been failed try again latter")    
+            return redirect('register')
     else:
         form = SignUpForm()
         return render (request, 'register.html', {'form':form})
-   
