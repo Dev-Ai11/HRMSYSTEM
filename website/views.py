@@ -46,9 +46,14 @@ def register_user(request):
         else:
             messages.error(
                 request,
-                "Please read the Instruction Carefully before filling the Registration Form",
+                "Please read the Instructions Carefully before filling the Registration Form",
             )
             return redirect('register')
     else:
         form = SignUpForm()
         return render (request, 'register.html', {'form':form})
+
+def add_employees(request):
+    return render(request, 'add_employees.html')
+
+
