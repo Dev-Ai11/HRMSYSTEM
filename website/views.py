@@ -53,7 +53,12 @@ def register_user(request):
         form = SignUpForm()
         return render (request, 'register.html', {'form':form})
 
-def add_employees(request):
-    return render(request, 'add_employees.html')
+def show_record(request,pk):
+    if request.user.is_authenticated:
+        # look up records
+        show_record = Record.objects.get(id=pk)
 
-
+        return render(request, "show_record.html", {"show_record": show_record})
+    else:
+        messages.success(request, "you must logged in")
+        return redirect('home')

@@ -48,6 +48,13 @@ class SignUpForm(UserCreationForm):
             '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
         )
 
+        self.fields["email"].widget.attrs["class"] = "form-control"
+        self.fields["email"].widget.attrs["placeholder"] = "Email Address"
+        self.fields["email"].label = ""
+        self.fields["email"].help_text = (
+            '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, @ only.</small></span>'
+        )
+
         self.fields["password1"].widget.attrs["class"] = "form-control"
         self.fields["password1"].widget.attrs["placeholder"] = "Password"
         self.fields["password1"].label = ""
